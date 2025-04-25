@@ -60,7 +60,7 @@ def browse_file(entry_widget):
         status_label.config(text="✅ File selected", bootstyle="success")
 
 # Setup UI with ttkbootstrap
-style = Style("minty")  # Modern theme
+style = Style("cyborg")  # Changed to cyborg theme for a dark, modern look
 root = style.master
 root.title("🗃️ MySQL Dump File Comparator")
 root.geometry("900x700")
@@ -72,7 +72,7 @@ main_frame.pack(expand=True, fill="both")
 # Header
 header_frame = Frame(main_frame)
 header_frame.pack(fill="x", pady=(0, 20))
-Label(header_frame, text="MySQL Dump File Comparator", font=("Helvetica", 16, "bold"), bootstyle="primary").pack()
+Label(header_frame, text="MySQL File Comparator", font=("Helvetica", 16, "bold"), bootstyle="light").pack()
 
 # File selection frame
 file_frame = Frame(main_frame)
@@ -81,44 +81,44 @@ file_frame.pack(fill="x", pady=10)
 # File 1
 file1_frame = Frame(file_frame)
 file1_frame.pack(fill="x", pady=5)
-Label(file1_frame, text="Select Yesterday's SQL File:", bootstyle="info").pack(side="left")
+Label(file1_frame, text="Select First SQL File:", bootstyle="light").pack(side="left")
 entry_file1 = Entry(file1_frame, width=60)
 entry_file1.pack(side="left", padx=10, expand=True, fill="x")
-Button(file1_frame, text="📂 Browse", bootstyle="primary-outline", command=lambda: browse_file(entry_file1)).pack(side="left")
+Button(file1_frame, text="📂 Browse", bootstyle="info-outline", command=lambda: browse_file(entry_file1)).pack(side="left")
 
 # File 2
 file2_frame = Frame(file_frame)
 file2_frame.pack(fill="x", pady=5)
-Label(file2_frame, text="Select Today's SQL File:", bootstyle="info").pack(side="left")
+Label(file2_frame, text="Select Second SQL File:", bootstyle="light").pack(side="left")
 entry_file2 = Entry(file2_frame, width=60)
 entry_file2.pack(side="left", padx=10, expand=True, fill="x")
-Button(file2_frame, text="📂 Browse", bootstyle="primary-outline", command=lambda: browse_file(entry_file2)).pack(side="left")
+Button(file2_frame, text="📂 Browse", bootstyle="info-outline", command=lambda: browse_file(entry_file2)).pack(side="left")
 
 # Compare button
-Button(main_frame, text="🔍 Compare Files", bootstyle="success", command=compare_files).pack(pady=20)
+Button(main_frame, text="🔍 Compare Files", bootstyle="info", command=compare_files).pack(pady=20)
 
 # Progress bar
 progress_frame = Frame(main_frame)
 progress_frame.pack(fill="x", pady=5)
-progress_bar = Progressbar(progress_frame, bootstyle="success-striped", mode="indeterminate")
+progress_bar = Progressbar(progress_frame, bootstyle="info-striped", mode="indeterminate")
 progress_bar.pack(fill="x")
 
 # Result box
 result_frame = Frame(main_frame)
 result_frame.pack(expand=True, fill="both", pady=10)
-result_box = scrolledtext.ScrolledText(result_frame, height=20, font=("Consolas", 10))
+result_box = scrolledtext.ScrolledText(result_frame, height=20, font=("Consolas", 10), bg="#2a2a2a", fg="#ffffff")
 result_box.pack(expand=True, fill="both")
 
 # Configure text tags for styling
-result_box.tag_configure("header", font=("Consolas", 10, "bold"), foreground="#2c3e50")
-result_box.tag_configure("diff", foreground="#e74c3c")
-result_box.tag_configure("success", foreground="#27ae60")
-result_box.tag_configure("error", foreground="#c0392b")
+result_box.tag_configure("header", font=("Consolas", 10, "bold"), foreground="#00bfff")  # Bright blue
+result_box.tag_configure("diff", foreground="#ff6b6b")  # Coral red
+result_box.tag_configure("success", foreground="#4caf50")  # Green
+result_box.tag_configure("error", foreground="#ff5252")  # Bright red
 
 # Status bar
 status_frame = Frame(main_frame)
 status_frame.pack(fill="x", pady=(10, 0))
-status_label = Label(status_frame, text="Ready", bootstyle="info")
+status_label = Label(status_frame, text="Ready", bootstyle="light")
 status_label.pack(side="left")
 
 # Make UI responsive
